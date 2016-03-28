@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var checkUrlButton = document.getElementById('checkUrl');
-  // console.log("URL Tester: " + document.getElementById('url').value);
   checkUrlButton.addEventListener('click', summarizeURL, false);
 }, false);
 
@@ -22,7 +21,6 @@ function summarizeURL(){
     i.name = 'url';
     i.value = d.getElementById('url').value;
     f.appendChild(i);
-    d.body.appendChild(f);
     f.submit();
   });
 }
@@ -32,20 +30,19 @@ function summarizeThis() {
 
   chrome.tabs.getSelected(null, function(tab) {
     d = document;
-// var xhr = new XMLHttpRequest();
-// xhr.open("GET", "http://textsummarization.net/text-summarizer", false);
-// xhr.send();
-// console.log(xhr.status);
+
     var f = d.createElement('form');
     f.action = 'http://textsummarization.net/text-summarizer';
     f.method = 'post';
-    var i = d.createElement('input');
+    var i = d.getElementById('url');
+    console.log(i);
     i.type = 'hidden';
-    i.name = 'url';
     i.value = tab.url;
     f.appendChild(i);
-    d.body.appendChild(f);
-    if (f.onsubmit())  f.submit();
-
+    f.submit();
   });
-}
+// for(var i=0; i<500; i++)
+// {
+//   console.log(document.readyState);
+// }   
+} 
